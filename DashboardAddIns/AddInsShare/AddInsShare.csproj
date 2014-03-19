@@ -45,7 +45,7 @@
     <ReferenceFolder Condition="Exists('$(ReferenceFolder32)')">$(ReferenceFolder32)</ReferenceFolder>
     <ReferenceFolder Condition="Exists('$(ReferenceFolder64)')">$(ReferenceFolder64)</ReferenceFolder>
     <!-- Hanoch Temp - set ReferenceFolder to C:\ArcGIS\DotNet\bin -->
-    <ReferenceFolder>C:\ArcGIS\DotNet\bin</ReferenceFolder>
+    <!-- ReferenceFolder>C:\ArcGIS\DotNet\bin</ReferenceFolder -->
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ESRI.ArcGIS.Client">
@@ -163,8 +163,8 @@ copy /Y "$(TargetDir)$(ProjectName).*" "C:\ArcGIS\DotNet\RouteMonitor\Bin\$(Proj
 copy /Y "$(TargetDir)*.dll" "C:\ArcGIS\DotNet\RouteMonitor\Bin\*.dll"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>del /F /Q "C:\ArcGIS\DotNet\RouteMonitor\Bin\$(ProjectName).*"
-del /F /Q "C:\ArcGIS\DotNet\RouteMonitor\Bin\*.dll</PreBuildEvent>
+    <PreBuildEvent>if exist "C:\ArcGIS\DotNet\RouteMonitor\Bin\$(ProjectName).*" del /F /Q "C:\ArcGIS\DotNet\RouteMonitor\Bin\$(ProjectName).*"
+ if exist "C:\ArcGIS\DotNet\RouteMonitor\Bin\*.dll" del /F /Q "C:\ArcGIS\DotNet\RouteMonitor\Bin\*.dll"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

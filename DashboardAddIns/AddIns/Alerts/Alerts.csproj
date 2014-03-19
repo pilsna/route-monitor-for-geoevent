@@ -50,7 +50,7 @@
     <ReferenceFolder Condition="Exists('$(ReferenceFolder32)')">$(ReferenceFolder32)</ReferenceFolder>
     <ReferenceFolder Condition="Exists('$(ReferenceFolder64)')">$(ReferenceFolder64)</ReferenceFolder>
     <!-- Hanoch Temp - set ReferenceFolder to C:\ArcGIS\DotNet\bin -->
-    <ReferenceFolder>C:\ArcGIS\DotNet\bin</ReferenceFolder>
+    <!--ReferenceFolder>C:\ArcGIS\DotNet\bin</ReferenceFolder -->
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ESRI.ArcGIS.Client">
@@ -74,7 +74,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="ESRI.ArcGIS.OperationsDashboard">
-      <HintPath>$(ReferenceFolder)\ESRI.ArcGIS.OperationsDashboard.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\ArcGIS SDKs\WPF10.2.2\sdk\OperationsDashboard\ESRI.ArcGIS.OperationsDashboard.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -137,7 +137,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>del /F /Q "C:\ArcGIS\DotNet\RouteMonitor\Bin\$(ProjectName).*"</PreBuildEvent>
+    <PreBuildEvent>if exist "C:\ArcGIS\DotNet\RouteMonitor\Bin\$(ProjectName).*" del /F /Q "C:\ArcGIS\DotNet\RouteMonitor\Bin\$(ProjectName).*"</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>mkdir C:\ArcGIS\DotNet\RouteMonitor\Bin
@@ -145,7 +145,7 @@ copy /Y "$(TargetDir)$(ProjectName).*" "C:\ArcGIS\DotNet\RouteMonitor\Bin\$(Proj
   </PropertyGroup>
   <PropertyGroup>
     <!--depending on 32bit or 64bit machine the reg key for the IDEIntegration folder is different-->
-    <IDEIntegrationFolder32>$(dkregistry:HKEY_LOCAL_MACHINE\SOFTWARE\ESRI\ArcGISRuntimeWPF10.2.2@InstallDir)\SDK\IDEIntegration</IDEIntegrationFolder32>
+    <IDEIntegrationFolder32>$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\ESRI\ArcGISRuntimeWPF10.2.2@InstallDir)\SDK\IDEIntegration</IDEIntegrationFolder32>
     <IDEIntegrationFolder64>$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\ESRI\ArcGISRuntimeWPF10.2.2@InstallDir)\SDK\IDEIntegration</IDEIntegrationFolder64>
     <!--set IDEIntegrationFolder depending on 32bit or 64bit machine-->
     <IDEIntegrationFolder Condition="Exists('$(IDEIntegrationFolder32)')">$(IDEIntegrationFolder32)</IDEIntegrationFolder>
